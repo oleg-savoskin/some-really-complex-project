@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+  somereallycomplexproject.serviceone:
+    environment:
+      - SERVICE_IDENTIFIER=${SERVICE_ONE_SID}
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - RABBIT_HOST=${RABBIT_HOST}
+      - RABBIT_VHOST=${RABBIT_VHOST}
+      - RABBIT_PORT=${RABBIT_PORT}
+      - RABBIT_USERNAME=${RABBIT_USERNAME}
+      - RABBIT_PASSWORD=${RABBIT_PASSWORD}
+      - SQL_SERVER=${SQL_SERVER}
+      - SQL_DATABASE=${SERVICE_ONE_SID}
+      - SQL_USERNAME=${SQL_USERNAME}
+      - SQL_PASSWORD=${SQL_PASSWORD}
+    ports:
+      - "9000:80"
+
+  somereallycomplexproject.servicetwo:
+    environment:
+      - SERVICE_IDENTIFIER=${SERVICE_TWO_SID}
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - RABBIT_HOST=${RABBIT_HOST}
+      - RABBIT_VHOST=${RABBIT_VHOST}
+      - RABBIT_PORT=${RABBIT_PORT}
+      - RABBIT_USERNAME=${RABBIT_USERNAME}
+      - RABBIT_PASSWORD=${RABBIT_PASSWORD}
+      - SQL_SERVER=${SQL_SERVER}
+      - SQL_DATABASE=${SERVICE_TWO_SID}
+      - SQL_USERNAME=${SQL_USERNAME}
+      - SQL_PASSWORD=${SQL_PASSWORD}
+    ports:
+      - "9001:80"
+
+  somereallycomplexproject.rabbitmq:
+    hostname: "rabbitmq"
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBIT_USERNAME}
+      - RABBITMQ_DEFAULT_PASS=${RABBIT_PASSWORD}
+    ports:
+      - "9011:5672"
+      - "9012:15672"

@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  somereallycomplexproject.serviceone:
+    image: ${DOCKER_REGISTRY-}somereallycomplexprojectserviceone
+    build:
+      context: ../
+      dockerfile: ./SomeReallyComplexProject.ServiceOne/Dockerfile
+    depends_on:
+      - somereallycomplexproject.rabbitmq
+
+  somereallycomplexproject.servicetwo:
+    image: ${DOCKER_REGISTRY-}somereallycomplexprojectservicetwo
+    build:
+      context: ../
+      dockerfile: ./SomeReallyComplexProject.ServiceTwo/Dockerfile
+    depends_on:
+      - somereallycomplexproject.rabbitmq
+
+  somereallycomplexproject.rabbitmq:
+    image: rabbitmq:3-management-alpine
